@@ -59,8 +59,8 @@ let wordTimer: any = null;
 // Populate cheat sheet safely
 Object.entries(MORSE_MAP).forEach(([morse, char]) => {
   const item = document.createElement('div');
-  item.className = 'flex flex-col gap-1';
-  item.innerHTML = `<span class="text-zinc-500 text-xs font-medium">${char}</span><span class="text-zinc-200 font-mono tracking-widest text-sm">${morse}</span>`;
+  item.className = 'flex flex-col items-center justify-center py-1.5 px-1 bg-black/20 rounded-lg border border-white/5 hover:bg-white/5 transition-colors cursor-default';
+  item.innerHTML = `<span class="text-zinc-500 text-[10px] font-bold leading-none mb-1">${char}</span><span class="text-emerald-400/80 font-mono text-[10px] tracking-widest leading-none">${morse}</span>`;
   if (cheatSheetContent) cheatSheetContent.appendChild(item);
 });
 

@@ -192,48 +192,7 @@ if (clearBtn) {
   });
 }
 
-// Drawer logic
-let dY = 0, startY = 0, isDrag = false;
-
-const openDrawer = (e: Event) => {
-  e.stopPropagation();
-  document.body.classList.add('drawer-open');
-  gsap.to(drawerOverlay, { opacity: 1, pointerEvents: 'auto', duration: 0.4, ease: 'power3.out' });
-  gsap.to(drawer, { y: 0, duration: 0.5, ease: 'power4.out' });
-};
-
-const closeDrawer = (e: Event) => {
-  e.stopPropagation();
-  document.body.classList.remove('drawer-open');
-  gsap.to(drawerOverlay, { opacity: 0, pointerEvents: 'none', duration: 0.3, ease: 'power3.inOut' });
-  gsap.to(drawer, { y: '100%', duration: 0.4, ease: 'power3.inOut' });
-};
-
-if (cheatSheetBtn) cheatSheetBtn.addEventListener('click', openDrawer);
-if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
-
-if (drawerDragHandle) {
-  drawerDragHandle.addEventListener('pointerdown', (e) => {
-    isDrag = true; startY = e.clientY;
-    gsap.killTweensOf(drawer);
-    drawerDragHandle.setPointerCapture(e.pointerId);
-  });
-
-  drawerDragHandle.addEventListener('pointermove', (e) => {
-    if (!isDrag) return;
-    dY = Math.max(0, e.clientY - startY);
-    gsap.set(drawer, { y: dY });
-  });
-
-  drawerDragHandle.addEventListener('pointerup', (e) => {
-    if (!isDrag) return;
-    isDrag = false;
-    drawerDragHandle.releasePointerCapture(e.pointerId);
-    if (dY > 100) closeDrawer(e);
-    else gsap.to(drawer, { y: 0, duration: 0.4, ease: 'back.out(1.2)' });
-    dY = 0;
-  });
-}
+// Drawer logic removed in favor of permanent right-column cheat sheet
 
 // Prevent context menu on hold
 window.addEventListener('contextmenu', (e) => {
